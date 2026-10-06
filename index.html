@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07120f" />
+  <meta name="description" content="StraySafe AI — Smart Stray Dog Detection & Safe Route Planning." />
+  <title>StraySafe AI — Safer Routes. Smarter Cities.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3M0wJ2uZ9s9gW0g9l1v8s4bY7p9zQ=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="nav shell">
+    <a class="brand" href="#top" aria-label="StraySafe AI home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>StraySafe <b>AI</b></span>
+    </a>
+    <nav>
+      <a href="#problem">Problem</a>
+      <a href="#how">How it works</a>
+      <a href="#demo">Live demo</a>
+      <a href="#stack">Technology</a>
+    </nav>
+    <a class="nav-cta" href="#demo">Try detection <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><i></i> AI-powered urban safety</div>
+        <h1>Safer routes.<br /><em>Smarter cities.</em></h1>
+        <p class="hero-lead">StraySafe AI detects stray dogs from uploaded images, turns detections into dynamic danger zones, and helps pedestrians choose safer routes.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#demo">Open live demo <span>→</span></a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <div class="hero-proof"><span class="status-dot"></span><span>Real-time awareness layer</span><span class="divider"></span><span>YOLOv5 + Hugging Face</span></div>
+      </div>
+      <div class="hero-visual reveal delay-1">
+        <div class="radar-card">
+          <div class="radar-grid"></div>
+          <div class="radar-ring ring-a"></div><div class="radar-ring ring-b"></div><div class="radar-ring ring-c"></div>
+          <div class="sweep"></div>
+          <div class="radar-center"><span></span></div>
+          <div class="radar-label label-1">ZONE 03 <b>HIGH</b></div>
+          <div class="radar-label label-2">ZONE 01 <b>WATCH</b></div>
+          <div class="radar-label label-3">SAFE PATH <b>ACTIVE</b></div>
+          <div class="radar-ping p1"></div><div class="radar-ping p2"></div><div class="radar-ping p3"></div>
+          <div class="visual-caption"><span>STRAYSAFE / MONITOR</span><strong>Urban safety intelligence</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics shell reveal">
+      <div><strong>01</strong><span>Detect</span><small>AI image analysis</small></div>
+      <div><strong>02</strong><span>Locate</span><small>Dynamic danger zones</small></div>
+      <div><strong>03</strong><span>Navigate</span><small>Safer route planning</small></div>
+      <div><strong>04</strong><span>Alert</span><small>Instant awareness</small></div>
+    </section>
+
+    <section id="problem" class="section shell">
+      <div class="section-head reveal"><div class="eyebrow"><i></i> The problem</div><h2>A blind spot in everyday<br /><em>urban navigation.</em></h2></div>
+      <div class="problem-grid">
+        <div class="problem-copy reveal"><p>Stray dog encounters can create real safety concerns for pedestrians and bikers. The project identifies a missing layer: <strong>real-time information about stray dog zones.</strong></p><p>Instead of waiting until an encounter happens, StraySafe AI aims to make risk visible before the user reaches it.</p></div>
+        <div class="problem-cards reveal delay-1">
+          <article><span>01</span><h3>Unpredictable encounters</h3><p>Users may have little warning before entering a high-risk area.</p></article>
+          <article><span>02</span><h3>No live safety layer</h3><p>Conventional navigation does not account for stray dog zones.</p></article>
+          <article><span>03</span><h3>Route decisions happen late</h3><p>Awareness needs to arrive early enough to change the path.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section-dark">
+      <div class="shell">
+        <div class="section-head reveal"><div class="eyebrow"><i></i> System flow</div><h2>From image to <em>safer path.</em></h2></div>
+        <div class="flow">
+          <div class="flow-line"></div>
+          <article class="flow-step reveal"><div class="step-num">01</div><div class="step-icon">↑</div><h3>Upload</h3><p>User uploads a photo through the app.</p><span>INPUT</span></article>
+          <article class="flow-step reveal delay-1"><div class="step-num">02</div><div class="step-icon">◎</div><h3>Detect</h3><p>Hugging Face sends the image to the trained detection model.</p><span>YOLOV5</span></article>
+          <article class="flow-step reveal delay-2"><div class="step-num">03</div><div class="step-icon">⌖</div><h3>Map</h3><p>A detected location becomes a dynamic danger zone.</p><span>LEAFLET.JS</span></article>
+          <article class="flow-step reveal delay-3"><div class="step-num">04</div><div class="step-icon">↗</div><h3>Reroute</h3><p>An alternate safer route is generated when a destination is provided.</p><span>GUIDANCE</span></article>
+        </div>
+        <div class="architecture reveal">
+          <div class="arch-node"><small>USER</small><strong>Image</strong></div><span>→</span><div class="arch-node accent"><small>HUGGING FACE</small><strong>Inference API</strong></div><span>→</span><div class="arch-node"><small>ROBOFLOW</small><strong>Trained model</strong></div><span>→</span><div class="arch-node"><small>STRAYSAFE</small><strong>Map + Alert</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="section shell demo-section">
+      <div class="section-head reveal"><div class="eyebrow"><i></i> Interactive prototype</div><h2>See the safety layer <em>in action.</em></h2><p>Upload a dog image to simulate a detection, place a danger zone, and generate an alternate route on the map.</p></div>
+      <div class="demo-layout">
+        <div class="control-panel reveal">
+          <div class="panel-title"><span>DETECTION LAB</span><span class="live-pill"><i></i> DEMO MODE</span></div>
+          <label class="upload-zone" id="dropZone">
+            <input type="file" id="imageInput" accept="image/*" />
+            <div class="upload-icon">＋</div><strong>Drop an image here</strong><span>or click to browse</span><small>JPG / PNG • Detection demo</small>
+          </label>
+          <div id="previewWrap" class="preview-wrap hidden"><img id="preview" alt="Uploaded preview" /><button id="removeImage" type="button">×</button></div>
+          <button id="detectBtn" class="btn btn-primary full" type="button">Run stray detection <span>→</span></button>
+          <div id="detectionResult" class="detection-result"><div class="result-empty"><span>◌</span><p>Waiting for an image<br /><small>Detection results will appear here.</small></p></div></div>
+          <div class="destination"><label for="destination">Destination</label><div class="input-row"><input id="destination" type="text" placeholder="e.g. Main gate / destination" /><button id="routeBtn" type="button">Route</button></div></div>
+        </div>
+        <div class="map-card reveal delay-1">
+          <div id="map"></div>
+          <div class="map-overlay top-left"><span class="map-live"><i></i> LIVE SAFETY MAP</span><strong id="zoneCount">0</strong><small>danger zones</small></div>
+          <div class="map-overlay bottom-right"><span>LEGEND</span><div><i class="legend-danger"></i> Danger zone</div><div><i class="legend-route"></i> Safer route</div></div>
+          <div id="alertToast" class="alert-toast"><span>⚠</span><div><strong>Danger zone detected</strong><small>Map updated with the latest detection.</small></div><button id="closeToast">×</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section stack-section section-dark">
+      <div class="shell">
+        <div class="section-head reveal"><div class="eyebrow"><i></i> Technology stack</div><h2>Built as a connected <em>system.</em></h2></div>
+        <div class="stack-grid">
+          <article class="stack-card reveal"><span>01 / FRONTEND</span><h3>Flutter</h3><p>Mobile application layer for image upload, alerts and route interaction.</p><div class="stack-chip">APP</div></article>
+          <article class="stack-card reveal delay-1"><span>02 / MAPS</span><h3>Leaflet.js</h3><p>Interactive map layer for live danger zones and safer route visualization.</p><div class="stack-chip">MAP</div></article>
+          <article class="stack-card reveal delay-2"><span>03 / AI BACKEND</span><h3>Roboflow + Hugging Face</h3><p>Roboflow-trained detection model exposed through the Hugging Face Inference API.</p><div class="stack-chip">AI</div></article>
+          <article class="stack-card reveal delay-3"><span>04 / DETECTION</span><h3>YOLOv5</h3><p>Object detection methodology used to identify stray dogs in uploaded imagery.</p><div class="stack-chip">VISION</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section impact shell">
+      <div class="impact-copy reveal"><div class="eyebrow"><i></i> Impact</div><h2>A step toward<br /><em>safer cities.</em></h2><p>StraySafe AI aligns the project with three Sustainable Development Goals while focusing on a practical urban safety problem.</p></div>
+      <div class="sdg-grid reveal delay-1"><article><strong>03</strong><span>Good Health<br />& Well-Being</span></article><article><strong>09</strong><span>Industry, Innovation<br />& Infrastructure</span></article><article><strong>11</strong><span>Sustainable Cities<br />& Communities</span></article></div>
+    </section>
+
+    <section class="team shell reveal"><div class="eyebrow"><i></i> Project team</div><div class="team-list"><div><strong>Shwetha M</strong><span>RA2311004010337</span></div><div><strong>Nishaa D</strong><span>RA2311004010340</span></div><div><strong>Darshanrishi M</strong><span>RA2311004010353</span></div></div></section>
+  </main>
+
+  <footer class="footer"><div class="shell"><div class="brand"><span class="brand-mark"><span></span><span></span><span></span></span><span>StraySafe <b>AI</b></span></div><p>Smart Stray Dog Detection & Safe Route Planning</p><span>College project • 2026</span></div></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
